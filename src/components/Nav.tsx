@@ -1,19 +1,32 @@
 import { useLocation } from '@solidjs/router'
 
+const NAV = [
+	{ label: 'Home', href: '/' },
+	{ label: 'About', href: '/about' },
+	{ label: 'Admin', href: '/admin' },
+	{ label: 'Admin About', href: '/admin/about' },
+]
+
 export const Nav = () => {
 	const nav = useLocation()
-	const active = (p: string) =>
-		p == nav.pathname ? 'border-sky-600' : 'border-transparent hover:border-sky-600'
+	const active = (p: string) => (p == nav.pathname ? 'bg-slate-400' : '')
 	return (
-		<nav class="bg-sky-800">
-			<ul class="container flex items-center p-3 text-gray-200">
-				<li class={`border-b-2 ${active('/')} mx-1.5 sm:mx-6`}>
+		<nav class="bg-green-200">
+			Nav Links:
+			<div class="flex gap-4">
+				<div class={active('/')}>
 					<a href="/">Home</a>
-				</li>
-				<li class={`border-b-2 ${active('/about')} mx-1.5 sm:mx-6`}>
+				</div>
+				<div class={active('/about')}>
 					<a href="/about">About</a>
-				</li>
-			</ul>
+				</div>
+				<div class={active('/admin')}>
+					<a href="/admin">Admin</a>
+				</div>
+				<div class={active('/admin/about')}>
+					<a href="/admin/about">Admin About</a>
+				</div>
+			</div>
 		</nav>
 	)
 }
